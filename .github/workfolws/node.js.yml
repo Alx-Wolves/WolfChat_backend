@@ -1,0 +1,39 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+      - backend/develop
+  pull_request:
+    branches:
+      - main
+      - backend/develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build Docker image
+        run: docker build -t my-chat-app-backend .
+
+      - name: Push Docker image
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker tag my-chat-app-backend mydockerhubusername/my-chat-app-backend:latest
+          docker push mydockerhubusername/my-chat-app-backend:latest

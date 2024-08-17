@@ -1,0 +1,64 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Coverage
+coverage/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# TypeScript
+*.tsbuildinfo
+
+# Miscellaneous
+*.swp
+*.swo
+*.swn
+*.swd
+*.swa
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+
+# IDE and editor specific
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Yarn
+.yarn/
+.pnp.*
