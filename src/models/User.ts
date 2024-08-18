@@ -5,6 +5,8 @@ interface IUser extends Document {
   username: string;
   email: string;
   password: string;
+  status: "online" | "offline" | "typing" | "playing";
+  lastLogin: Date;
   avatar?: string;
   discriminator: number;
   comparePassword: (password: string) => Promise<boolean>;
@@ -41,6 +43,15 @@ const UserSchema: Schema = new Schema(
       required: [true, "Discriminator is required"],
       min: [0, "Discriminator must be a positive number"],
       max: [9999, "Discriminator must be a 4-digit number"],
+    },
+    status: {
+      type: String,
+      enum: ["online", "offline", "typing", "playing"],
+      default: "offline",
+    },
+    lastLogin: {
+      type: Date,
+      default: Date.now,
     },
   },
   {
